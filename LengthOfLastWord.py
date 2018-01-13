@@ -9,3 +9,4 @@ class Solution:
         string = s.split()
         # print(string[-1])
         return len(string[-1])
+
