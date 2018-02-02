@@ -11,7 +11,7 @@ For example:
     ...
     Z -> 26
     AA -> 27
-    AB -> 28 
+    AB -> 28
 """
 class Solution:
     def titleToNumber(self, s):
