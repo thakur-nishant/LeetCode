@@ -1,0 +1,59 @@
+class Tree:
+    def __init__(self):
+        self.x = 0
+        self.l = None
+        self.r = None
+
+
+def solution(T):
+    if not T:
+        return 0
+
+    root = T
+    val = T.x
+
+    result = check_child(root, val)
+    print(result)
+
+
+def check_child(root, val):
+
+    if not root:
+        return 0
+    count = 0
+    check_left = check_child(root.l, val)
+    check_right = check_child(root.r, val)
+
+    if root.x >= val:
+        count += 1
+
+    return count+check_left+check_right
+
+
+node1 = Tree()
+node1.x = 8
+
+node2 = Tree()
+node2.x = 2
+
+node3 = Tree()
+node3.x = 6
+
+node1.l = node2
+node1.r = node3
+
+node4 = Tree()
+node4.x = 8
+
+node5 = Tree()
+node5.x = 7
+
+node2.l = node4
+node2.r = node5
+
+solution(node1)
+
+
+
+
+
