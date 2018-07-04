@@ -34,37 +34,38 @@ class Solution:
         :type K: int
         :rtype: int
         """
-        result = self.check(A, K)
-        if result == 50001:
+        n = len(A)
+        curr_sum = A[0]
+        i = 0
+        j = 0
+        min_len = n + 1
+        while i < n and j < n:
+            if curr_sum >= K:
+                if min_len >= j - i + 1:
+                    min_len = j - i + 1
+                curr_sum -= A[i]
+                i += 1
+            else:
+                j += 1
+                if j < n:
+                    curr_sum += A[j]
+                    if curr_sum <= A[j]:
+                        i = j
+                        curr_sum = A[i]
+            if i+1 < n and A[i] < 0:
+                curr_sum -= A[i]
+                i += 1
+
+            print(i,j,curr_sum)
+
+        if min_len == n + 1:
             return -1
-        else:
-            return result
+        return min_len
 
-    def check(self, A, K):
-        if len(A) > 1:q
-            left = self.check(A[:-1], K)
-            right = self.check(A[1:], K)
-
-            if left < right:
-                result = left
-            else:
-                result = right
-
-            if sum(A) >= K:
-                temp = len(A)
-            else:
-                temp = 50001
-
-            if result < temp:
-                return result
-            else:
-                return temp
-        else:
-            if A[0] >= K:
-                return 1
-            return 50001
-
-A = [2,2]
-K = 4
-K = Solution().shortestSubarray(A, K)
-print(K)
+# A = [84,-37,32,40,95]
+# K = 167
+A = [-34,37,51,3,-12,-50,51,100,-47,99,34,14,-13,89,31,-14,-44,23,-38,6]
+K = 151
+x = Solution().shortestSubarray(A, K)
+print("##########")
+print(x)
