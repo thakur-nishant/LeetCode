@@ -31,5 +31,5 @@ class Solution:
         return result
 
 
-test = Solution()
+test = Solution()     
 test.lengthOfLongestSubstring('abxabccbqwertyy')
