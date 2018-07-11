@@ -23,7 +23,9 @@ Note:
 1 is typically treated as an ugly number.
 Input is within the 32-bit signed integer range: [−2^31,  2^31 − 1].
 """
-
+"""
+A faster solution
+"""
 
 class Solution:
     def isUgly(self, num):
@@ -31,31 +33,46 @@ class Solution:
         :type num: int
         :rtype: bool
         """
-        if num <= 0:
-            return False
-        facts = set()
-        i = 2
-        while i <= num:
-            if self.isPrime(num):
-                facts.add(num)
-                num = num // num
-            else:
-                while num % i == 0:
-                    facts.add(i)
-                    num = num // i
-            i += 1
+        for i in [2,3,5]:
+            while num % i == 0 and num:
+                num = num // i
 
-        print(facts)
-        if facts - {2, 3, 5}:
-            return False
-        return True
+        return num == 1
 
-    def isPrime(self,num):
-        for i in range(2,int(num**0.5)+2):
-            if num % i == 0:
-                return False
-        return True
 
+"""Solution little slower"""
+# class Solution:
+#     def isUgly(self, num):
+#         """
+#         :type num: int
+#         :rtype: bool
+#         """
+#         if num <= 0:
+#             return False
+#         facts = set()
+#         i = 2
+#         while i <= num:
+#             if self.isPrime(num):
+#                 facts.add(num)
+#                 num = num // num
+#             else:
+#                 while num % i == 0:
+#                     facts.add(i)
+#                     num = num // i
+#             i += 1
+#
+#         print(facts)
+#         if facts - {2, 3, 5}:
+#             return False
+#         return True
+#
+#     def isPrime(self,num):
+#         for i in range(2,int(num**0.5)+2):
+#             if num % i == 0:
+#                 return False
+#         return True
+
+""" Slowest solution """
 # class Solution:
 #     def isUgly(self, num):
 #         """
