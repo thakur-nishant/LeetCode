@@ -78,8 +78,13 @@ class Solution:
 
         return result
 
+matrix = [
+ [ 1, 2, 3 ],
+ [ 4, 5, 6 ],
+ [ 7, 8, 9 ]
+]
 # matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
-matrix = [[6,9,7]]
+# matrix = [[6,9,7]]
 x = Solution().spiralOrder(matrix)
 print(x)
 
