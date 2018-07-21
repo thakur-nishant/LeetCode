@@ -33,7 +33,6 @@ class Solution:
                     if diff > 0:
                         result += diff
             i = j
-
         return result
 
 
