@@ -14,7 +14,7 @@ class Solution:
         return flag
         
 """
-# Solution using logic
+# Solution using maths
 
 class Solution:
     def isPalindrome(self, x):
