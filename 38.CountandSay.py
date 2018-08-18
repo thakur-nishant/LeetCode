@@ -49,9 +49,7 @@ class Solution(object):
                     count = 1
                 j += 1
             i += 1
-
             result = nextresult + str(count) + ch
-
         return result
 
 
