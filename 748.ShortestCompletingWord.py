@@ -34,20 +34,29 @@ class Solution:
         :rtype: str
         """
         licencePlateMapper = self.characterMapper(licensePlate.lower())
-
-        result = words[0]
+        result = None
         for word in words:
             wordMapper = self.characterMapper(word)
+            flag = True
             for key in licencePlateMapper:
+                if key not in wordMapper or (wordMapper[key] - licencePlateMapper[key]) < 0:
+                    flag = False
+                    break
+            if flag:
+                if not result:
+                    result = word
+                elif len(word) < len(result):
+                    result = word
+        return result
 
     def characterMapper(self, word):
         wordMapper = {}
         for letter in word:
-            if letter in wordMapper:
-                wordMapper[letter] += 1
-            else:
-                wordMapper[letter] = 1
+            if letter.isalpha():
+                if letter in wordMapper:
+                    wordMapper[letter] += 1
+                else:
+                    wordMapper[letter] = 1
         return wordMapper
 
 
-    
