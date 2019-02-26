@@ -30,4 +30,22 @@ Note:
 S only consists of '0' and '1' characters.
 """
 
+import queue
+
+
+class Solution:
+    def minFlipsMonoIncr(self, S: str) -> int:
+        n = len(S)
+        zero_count = S.count('0')
+        one_count = 0
+        result = n - zero_count
+        for i in range(n):
+            if S[i] == '0':
+                zero_count -= 1
+            else:
+                result = min(result, zero_count + one_count)
+                one_count += 1
+
+        return result
+
 
