@@ -17,27 +17,45 @@ class ListNode:
         self.next = None
 
 
-class Solution(object):
-    def addTwoNumbers(self, l1, l2):
-        """
-        :type l1: ListNode
-        :type l2: ListNode
-        :rtype: ListNode
-        """
-        num1 = ''
-        num2 = ''
-        while l1:
-            num1 = str(l1.val) + num1
-            l1 = l1.next
+# class Solution(object):
+#     def addTwoNumbers(self, l1, l2):
+#         """
+#         :type l1: ListNode
+#         :type l2: ListNode
+#         :rtype: ListNode
+#         """
+#         num1 = ''
+#         num2 = ''
+#         while l1:
+#             num1 = str(l1.val) + num1
+#             l1 = l1.next
+#
+#         while l2:
+#             num2 = str(l2.val) + num2
+#             l2 = l2.next
+#
+#         result = str(int(num1) + int(num2))
+#
+#         res = []
+#         for i in range(len(result)):
+#             res.insert(0, int(result[i]))
+#
+#         return res
 
-        while l2:
-            num2 = str(l2.val) + num2
-            l2 = l2.next
 
-        result = str(int(num1) + int(num2))
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        carry = 0
+        result= curr = ListNode(0)
+        while l1 or l2 or carry:
+            if l1:
+                carry += l1.val
+                l1 = l1.next
+            if l2:
+                carry += l2.val
+                l2 = l2.next
+            curr.next = ListNode(carry%10)
+            curr = curr.next
+            carry = carry//10
 
-        res = []
-        for i in range(len(result)):
-            res.insert(0, int(result[i]))
-
-        return res
+            
