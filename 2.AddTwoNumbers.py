@@ -58,4 +58,3 @@ class Solution:
             curr = curr.next
             carry = carry//10
 
-            
