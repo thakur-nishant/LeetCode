@@ -17,8 +17,7 @@ import collections
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         anchor = end = 0
-        counter = len(t)
-        result = len(s) + 1
+        result, counter = len(s) + 1, len(t)
         t_count = collections.Counter(t)
         while end < len(s):
             if s[end] in t_count:
@@ -35,7 +34,7 @@ class Solution:
                         counter += 1
                     t_count[s[anchor]] += 1
                 anchor += 1
-        return "" if result == len(s) + 1 else s[head:head + result]
+        return "" if result == len(s) + 1 else s[head: head + result]
 
 
 s = "ADOBECODEBANC"
