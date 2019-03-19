@@ -20,6 +20,6 @@ Note:
 class Solution:
     def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:
         avg = sum(nums) // k
-
+        
 
 
