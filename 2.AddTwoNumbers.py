@@ -10,43 +10,23 @@ Output: 7 -> 0 -> 8
 Explanation: 342 + 465 = 807.
 """
 
+
 # Definition for singly-linked list.
-class ListNode:
+class ListNode(object):
     def __init__(self, x):
         self.val = x
         self.next = None
 
-
-# class Solution(object):
-#     def addTwoNumbers(self, l1, l2):
-#         """
-#         :type l1: ListNode
-#         :type l2: ListNode
-#         :rtype: ListNode
-#         """
-#         num1 = ''
-#         num2 = ''
-#         while l1:
-#             num1 = str(l1.val) + num1
-#             l1 = l1.next
-#
-#         while l2:
-#             num2 = str(l2.val) + num2
-#             l2 = l2.next
-#
-#         result = str(int(num1) + int(num2))
-#
-#         res = []
-#         for i in range(len(result)):
-#             res.insert(0, int(result[i]))
-#
-#         return res
-
-
-class Solution:
-    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+class Solution(object):
+    def addTwoNumbers(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
         carry = 0
-        result= curr = ListNode(0)
+        head = ListNode(0)
+        node = head
         while l1 or l2 or carry:
             if l1:
                 carry += l1.val
@@ -54,7 +34,10 @@ class Solution:
             if l2:
                 carry += l2.val
                 l2 = l2.next
-            curr.next = ListNode(carry%10)
-            curr = curr.next
-            carry = carry//10
+
+            node.next = ListNode(carry % 10)
+            node = node.next
+            carry //= 10
+
+        return head.next
 
