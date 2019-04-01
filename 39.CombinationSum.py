@@ -27,6 +27,30 @@ A solution set is:
 
 """
 
+
+class Solution(object):
+    def combinationSum(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        visited = set()
+        result = []
+        self.dfs_helper(0, [], candidates, target, result, visited)
+        return result
+
+    def dfs_helper(self, curr_sum, used_candidates, candidates, target, result, visited):
+        if tuple(sorted(used_candidates)) in visited:
+            return
+        visited.add(tuple(sorted(used_candidates)))
+        if curr_sum == target:
+            result.append(used_candidates)
+        if curr_sum < target:
+            for i in candidates:
+                self.dfs_helper(curr_sum + i, used_candidates + [i], candidates, target, result, visited)
+
+
 class Solution:
     def combinationSum(self, candidates, target):
         """
