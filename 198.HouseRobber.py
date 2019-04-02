@@ -40,3 +40,24 @@ class Solution:
         return max(last[1], last[2])
 
 
+class Solution(object):
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if not nums:
+            return 0
+        log = [0] * len(nums)
+        result = 0
+        for i in range(len(nums)):
+            if i - 3 >= 0:
+                log[i] = max(log[i - 2], log[i - 3])
+            elif i - 2 >= 0:
+                log[i] = log[i - 2]
+
+            log[i] += nums[i]
+            result = max(result, log[i])
+
+        return result
+

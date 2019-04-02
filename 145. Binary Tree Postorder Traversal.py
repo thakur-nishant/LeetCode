@@ -43,7 +43,6 @@ class Solution(object):
                     curr = curr.left
                 else:
                     break
-
         return result
 
 
