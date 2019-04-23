@@ -19,27 +19,43 @@ There is only one duplicate number in the array, but it could be repeated more t
 
 
 class Solution(object):
-    def findLengthOfLCIS(self, nums):
+    def findDuplicate(self, nums):
         """
         :type nums: List[int]
-
         :rtype: int
         """
-        anchor = i = 0
-        result = 0
-        while i < len(nums):
-            if i + 1 < len(nums):
-                result = max(result, i - anchor + 1)
-                if nums[i] >= nums[i + 1]:
-                    anchor = i + 1
-            i += 1
-        return max(result, i - anchor)
+        low = 0
+        high = len(nums) - 1
+
+        while low < high:
+            mid = low + (high - low) / 2
+            count = 0
+            for i in nums:
+                if i <= mid:
+                    count += 1
+            if count <= mid:
+                low = mid + 1
+            else:
+                high = mid
+        return low
 
 
-class Solution(object):
-    def findLengthOfLCIS(self, nums):
-        ans = anchor = 0
-        for i in range(len(nums)):
-            if i and nums[i-1] >= nums[i]: anchor = i
-            ans = max(ans, i - anchor + 1)
-        return ans
+class Solution:
+    def findDuplicate(self, nums):
+        # Find the intersection point of the two runners.
+        tortoise = nums[0]
+        hare = nums[0]
+        while True:
+            tortoise = nums[tortoise]
+            hare = nums[nums[hare]]
+            if tortoise == hare:
+                break
+
+        # Find the "entrance" to the cycle.
+        ptr1 = nums[0]
+        ptr2 = tortoise
+        while ptr1 != ptr2:
+            ptr1 = nums[ptr1]
+            ptr2 = nums[ptr2]
+
+        return ptr1
