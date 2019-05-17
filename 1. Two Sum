@@ -13,6 +13,22 @@ return [0, 1].
 
 class Solution {
     public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> log = new HashMap<>();
+        int[] result = new int[2];
+        for (int i = 0; i < nums.length; ++i) {
+            if (log.containsKey(nums[i])) {
+                result = new int[]{log.get(nums[i]), i};
+                break;
+            } else {
+                log.put(target-nums[i], i);
+            }
+        }
+        return result;
+    }
+}
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
         HashMap <Integer, Integer> log = new HashMap<Integer, Integer>();
         int[] res = new int[2];
         for(int i=0; i<nums.length; ++i) {
