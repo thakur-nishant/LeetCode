@@ -23,6 +23,39 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
+        n = len(nums)
+        nums.sort()
+        results = []
+        for i in range(len(nums) - 2):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            temp = self.two_sum(i + 1, n - 1, nums, -nums[i])
+            for t in temp:
+                results.append([nums[i]] + t)
+        return results
+
+    def two_sum(self, i, j, nums, target):
+        result = []
+        while i < j:
+            curr = nums[i] + nums[j]
+            if curr == target:
+                result.append([nums[i], nums[j]])
+                i += 1
+                while i < len(nums) and nums[i] == nums[i - 1]:
+                    i += 1
+            elif curr < target:
+                i += 1
+            else:
+                j -= 1
+        return result
+
+
+class Solution(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
         result = set()
         for i in range(len(nums)-2):
             check = {}

@@ -13,6 +13,27 @@ Input: haystack = "aaaaa", needle = "bba"
 Output: -1
 """
 
+
+class Solution(object):
+    def strStr(self, haystack, needle):
+        """
+        :type haystack: str
+        :type needle: str
+        :rtype: int
+        """
+        n = len(haystack)
+        m = len(needle)
+        for i in range(n - m + 1):
+            p = i
+            for j in range(m):
+                if haystack[p] != needle[j]:
+                    break
+                p += 1
+            else:
+                return i
+        return -1
+
+
 class Solution:
     def strStr(self, haystack, needle):
         """
