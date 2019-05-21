@@ -14,6 +14,42 @@ If there is such window, you are guaranteed that there will always be only one u
 import collections
 
 
+class Solution(object):
+    def minWindow(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        start = end = 0
+        min_length = len(s) + 1
+        counter = len(t)
+        log = {}
+
+        for c in t:
+            if c in log:
+                log[c] += 1
+            else:
+                log[c] = 1
+        while end < len(s):
+            if s[end] in log:
+                log[s[end]] -= 1
+                if log[s[end]] >= 0:
+                    counter -= 1
+            end += 1
+
+            while counter == 0:
+                if (end - start < min_length):
+                    min_length = end - start
+                    head = start
+                if s[start] in log:
+                    log[s[start]] += 1
+                    if log[s[start]] > 0:
+                        counter += 1
+                start += 1
+        return s[head:head + min_length] if min_length != len(s) + 1 else ""
+
+
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         anchor = end = 0
