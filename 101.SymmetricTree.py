@@ -23,6 +23,59 @@ class TreeNode:
         self.right = None
 
 
+# Iterative solution
+class Solution(object):
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        if not root:
+            return True
+        stack1 = [root.left]
+        stack2 = [root.right]
+        while stack1 and stack2:
+            node1 = stack1.pop()
+            node2 = stack2.pop()
+            if node1 == None and node2 == None:
+                continue
+            if node1 == None or node2 == None:
+                return False
+            if node1.val != node2.val:
+                return False
+            stack1.append(node1.right)
+            stack1.append(node1.left)
+            stack2.append(node2.left)
+            stack2.append(node2.right)
+        if stack1 or stack2:
+            return False
+        return True
+
+
+# Recursive solution
+class Solution(object):
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        if not root:
+            return True
+        return self.check(root.left, root.right)
+    def check(self, node1, node2):
+        if node1 == None and node2 == None:
+            return True
+        if node1 == None:
+            return False
+        if node2 == None:
+            return False
+        if node1.val != node2.val:
+            return False
+        check1 = self.check(node1.left, node2.right)
+        check2 = self.check(node1.right, node2.left)
+        return check1 and check2
+
+
 class Solution:
     def isSymmetric(self, root):
         """
