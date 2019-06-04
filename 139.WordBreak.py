@@ -7,6 +7,34 @@ dict = ["leet", "code"].
 
 Return true because "leetcode" can be segmented as "leet code".
 """
+
+
+class Solution(object):
+    def wordBreak(self, s, wordDict):
+        """
+        :type s: str
+        :type wordDict: List[str]
+        :rtype: bool
+        """
+        if not wordDict:
+            return False
+        n = len(s)
+        dp = [False] * (n + 1)
+        dp[0] = True
+        maxword = wordDict[0]
+        for word in wordDict:
+            if len(word) > len(maxword):
+                maxword = word
+        max_len = len(maxword)
+        wordDict = set(wordDict)
+
+        for i in range(n):
+            for j in range(max_len):
+                if i - j >= 0 and s[i - j:i + 1] in wordDict and dp[i - j]:
+                    dp[i + 1] = True
+        return dp[n]
+
+
 class Solution:
     def wordBreak(self, s, wordDict):
         """
