@@ -19,6 +19,27 @@ class ListNode:
         self.next = None
 import sys
 
+from queue import PriorityQueue
+class Solution(object):
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        if not any(lists):
+            return None
+        dummy = curr = ListNode(0)
+        q = PriorityQueue()
+        for idx, node in enumerate(lists):
+            if node: q.put((node.val, idx, node))
+
+        while not q.empty():
+            val, idx, curr.next = q.get()
+            curr = curr.next
+            if curr.next:
+                q.put((curr.next.val, idx, curr.next))
+        return dummy.next
+
 
 class Solution:
     def mergeKLists(self, lists):
@@ -45,5 +66,7 @@ class Solution:
                 break
         head = head.next
         return head
+
+
 
 
